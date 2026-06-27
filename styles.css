@@ -1,0 +1,568 @@
+/* ================================================================
+   INTELLILEARN — COMPLETE STYLESHEET v3
+   Deep navy-teal theme · Glassmorphism · Vibrant accents
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── ROOT VARIABLES ─────────────────────────────────────────── */
+:root {
+  --bg-base:       #0b1120;
+  --bg-surface:    #111827;
+  --bg-elevated:   #162032;
+  --bg-card:       #1a2540;
+
+  --cyan:          #00d4ff;
+  --cyan-dim:      #00a8cc;
+  --purple:        #a855f7;
+  --pink:          #f472b6;
+  --green:         #34d399;
+  --amber:         #fbbf24;
+
+  --text-primary:  #f0f4ff;
+  --text-secondary:#94a3b8;
+  --text-muted:    #4a6080;
+
+  --border:        rgba(0,212,255,0.13);
+  --border-soft:   rgba(255,255,255,0.07);
+
+  --glow-cyan:     0 0 28px rgba(0,212,255,0.25);
+  --glow-purple:   0 0 28px rgba(168,85,247,0.25);
+}
+
+/* ── GLOBAL ──────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+html, body,
+[data-testid="stAppViewContainer"],
+[data-testid="stApp"] {
+  background: linear-gradient(135deg, #0b1120 0%, #0e1a2e 50%, #0b1520 100%) !important;
+  color: var(--text-primary) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+/* Main content wrapper */
+.block-container {
+  padding-top: 1.8rem !important;
+  padding-bottom: 2.5rem !important;
+  max-width: 1400px !important;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────────────────── */
+[data-testid="stSidebar"] {
+  background: linear-gradient(180deg,
+    #0d1728 0%,
+    #101e33 40%,
+    #0d1a2e 100%) !important;
+  border-right: 1px solid rgba(0,212,255,0.15) !important;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.4) !important;
+}
+
+/* Sidebar inner padding fix — stops title clipping */
+[data-testid="stSidebar"] > div:first-child {
+  padding-top: 1.4rem !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+[data-testid="stSidebar"] section[data-testid="stSidebarContent"] {
+  padding-top: 0.5rem !important;
+  overflow-x: hidden !important;
+}
+
+/* "Navigate" label */
+[data-testid="stSidebar"] .stRadio > label {
+  color: var(--text-muted) !important;
+  font-size: 0.68rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  font-weight: 700 !important;
+}
+
+/* Radio options */
+[data-testid="stSidebar"] [data-testid="stRadio"] div[role="radiogroup"] label {
+  color: var(--text-secondary) !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  padding: 7px 12px !important;
+  border-radius: 9px !important;
+  transition: all 0.18s !important;
+  margin-bottom: 2px !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stRadio"] div[role="radiogroup"] label:hover {
+  background: rgba(0,212,255,0.08) !important;
+  color: var(--cyan) !important;
+}
+
+/* Sidebar divider */
+[data-testid="stSidebar"] hr {
+  border: none !important;
+  border-top: 1px solid rgba(255,255,255,0.07) !important;
+  margin: 0.9rem 0 !important;
+}
+
+/* ── MAIN PAGE HEADER (Chat+PDF) ─────────────────────────────── */
+.main-header {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(90deg, #00d4ff 0%, #a855f7 60%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 5s ease-in-out infinite alternate;
+  margin-bottom: 0.1rem;
+}
+
+@keyframes gradientShift {
+  0%   { filter: hue-rotate(0deg);   }
+  100% { filter: hue-rotate(20deg);  }
+}
+
+.sub-header {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-bottom: 1.6rem;
+  letter-spacing: 0.01em;
+}
+
+/* ── PAGE HEADER CARD (new pages) ─────────────────────────────── */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 26px 30px;
+  background: linear-gradient(135deg,
+    rgba(0,212,255,0.10) 0%,
+    rgba(168,85,247,0.07) 50%,
+    rgba(244,114,182,0.05) 100%);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, rgba(0,212,255,0.08), transparent 60%);
+  pointer-events: none;
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+}
+
+.page-icon  { font-size: 2.8rem; line-height: 1; }
+
+.page-title {
+  font-size: 1.85rem !important;
+  font-weight: 800 !important;
+  color: var(--text-primary) !important;
+  letter-spacing: -0.03em;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: linear-gradient(90deg, #fff 30%, #a8d8ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-subtitle {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
+
+/* ── EMPTY STATE ──────────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 64px 40px;
+  background: linear-gradient(135deg,
+    rgba(0,212,255,0.04),
+    rgba(168,85,247,0.03));
+  border: 1px dashed rgba(0,212,255,0.2);
+  border-radius: 18px;
+  margin: 40px auto;
+  max-width: 480px;
+}
+
+.empty-icon { font-size: 3.8rem; margin-bottom: 18px; }
+.empty-state h3 { color: var(--text-secondary); font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
+.empty-state p  { color: var(--text-muted); font-size: 0.88rem; }
+
+/* ── BUTTONS ─────────────────────────────────────────────────── */
+.stButton > button {
+  border-radius: 10px !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 0.88rem !important;
+  transition: all 0.2s ease !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: var(--text-secondary) !important;
+  padding: 0.5rem 1.1rem !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+.stButton > button:hover {
+  background: rgba(0,212,255,0.1) !important;
+  border-color: rgba(0,212,255,0.35) !important;
+  color: var(--cyan) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 24px rgba(0,212,255,0.18) !important;
+}
+
+/* Primary buttons */
+button[kind="primary"],
+.stButton > button[kind="primary"] {
+  background: linear-gradient(135deg, #00d4ff, #0099cc) !important;
+  border: none !important;
+  color: #081018 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 22px rgba(0,212,255,0.35) !important;
+}
+
+button[kind="primary"]:hover,
+.stButton > button[kind="primary"]:hover {
+  background: linear-gradient(135deg, #22dcff, #00b8e6) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 32px rgba(0,212,255,0.45) !important;
+  color: #081018 !important;
+}
+
+/* Sidebar buttons */
+[data-testid="stSidebar"] .stButton > button {
+  background: linear-gradient(135deg,
+    rgba(0,212,255,0.1),
+    rgba(168,85,247,0.08)) !important;
+  border: 1px solid rgba(0,212,255,0.22) !important;
+  color: var(--cyan) !important;
+  width: 100% !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+}
+
+[data-testid="stSidebar"] .stButton > button:hover {
+  background: linear-gradient(135deg,
+    rgba(0,212,255,0.2),
+    rgba(168,85,247,0.15)) !important;
+  box-shadow: 0 0 24px rgba(0,212,255,0.25) !important;
+  border-color: rgba(0,212,255,0.45) !important;
+}
+
+/* ── FILE UPLOADER ───────────────────────────────────────────── */
+[data-testid="stFileUploader"] {
+  background: linear-gradient(135deg,
+    rgba(0,212,255,0.04),
+    rgba(168,85,247,0.03)) !important;
+  border: 1px dashed rgba(0,212,255,0.28) !important;
+  border-radius: 14px !important;
+  transition: all 0.25s !important;
+}
+
+[data-testid="stFileUploader"]:hover {
+  border-color: rgba(0,212,255,0.55) !important;
+  background: rgba(0,212,255,0.06) !important;
+  box-shadow: 0 0 20px rgba(0,212,255,0.1) !important;
+}
+
+/* ── CHAT MESSAGES ───────────────────────────────────────────── */
+[data-testid="stChatMessage"] {
+  border-radius: 14px !important;
+  padding: 14px 18px !important;
+  margin-bottom: 10px !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid var(--border-soft) !important;
+}
+
+/* User messages */
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+  background: linear-gradient(135deg,
+    rgba(0,212,255,0.08),
+    rgba(0,212,255,0.04)) !important;
+  border-color: rgba(0,212,255,0.15) !important;
+}
+
+/* Assistant messages */
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
+  background: linear-gradient(135deg,
+    rgba(168,85,247,0.07),
+    rgba(168,85,247,0.03)) !important;
+  border-color: rgba(168,85,247,0.12) !important;
+}
+
+/* ── CHAT INPUT ──────────────────────────────────────────────── */
+[data-testid="stChatInput"] textarea,
+[data-testid="stChatInputTextArea"] {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(0,212,255,0.18) !important;
+  border-radius: 12px !important;
+  color: var(--text-primary) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+[data-testid="stChatInput"]:focus-within {
+  border-color: rgba(0,212,255,0.45) !important;
+  box-shadow: 0 0 0 3px rgba(0,212,255,0.1) !important;
+}
+
+.stChatInputContainer { margin-top: 14px !important; }
+
+/* ── SELECTBOX ───────────────────────────────────────────────── */
+[data-testid="stSelectbox"] > div > div {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(0,212,255,0.15) !important;
+  border-radius: 10px !important;
+  color: var(--text-primary) !important;
+  transition: all 0.18s !important;
+}
+
+[data-testid="stSelectbox"] > div > div:hover {
+  border-color: rgba(0,212,255,0.35) !important;
+  background: rgba(0,212,255,0.06) !important;
+}
+
+/* Dropdown list */
+[data-testid="stSelectbox"] ul {
+  background: #162032 !important;
+  border: 1px solid rgba(0,212,255,0.2) !important;
+  border-radius: 10px !important;
+}
+
+[data-testid="stSelectbox"] li:hover {
+  background: rgba(0,212,255,0.1) !important;
+  color: var(--cyan) !important;
+}
+
+/* ── TEXT INPUT ──────────────────────────────────────────────── */
+[data-testid="stTextInput"] input {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(0,212,255,0.15) !important;
+  border-radius: 10px !important;
+  color: var(--text-primary) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  transition: all 0.18s !important;
+}
+
+[data-testid="stTextInput"] input:focus {
+  border-color: rgba(0,212,255,0.45) !important;
+  box-shadow: 0 0 0 3px rgba(0,212,255,0.1) !important;
+  background: rgba(0,212,255,0.04) !important;
+}
+
+/* ── CONTAINERS (bordered) ───────────────────────────────────── */
+[data-testid="stVerticalBlockBorderWrapper"] > div {
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.03),
+    rgba(255,255,255,0.015)) !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 14px !important;
+}
+
+/* ── ALERTS ──────────────────────────────────────────────────── */
+[data-testid="stAlert"] {
+  border-radius: 10px !important;
+  border-left-width: 3px !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.88rem !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* success */
+[data-testid="stAlert"][data-baseweb="notification"] {
+  background: rgba(52,211,153,0.08) !important;
+}
+
+/* ── MARKDOWN HEADINGS ───────────────────────────────────────── */
+.stMarkdown h2, .stMarkdown h3 {
+  color: var(--text-primary) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* ── SPINNER ─────────────────────────────────────────────────── */
+[data-testid="stSpinner"] { color: var(--cyan) !important; }
+
+/* ================================================================
+   FLASHCARD COMPONENTS
+   ================================================================ */
+
+.fc-progress-wrap {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 99px;
+  margin: 8px 0 6px;
+}
+
+.fc-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff, #a855f7, #f472b6);
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 0 14px rgba(0,212,255,0.45);
+}
+
+.fc-progress-label {
+  position: absolute;
+  right: 0;
+  top: -22px;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Card */
+.flashcard {
+  min-height: 230px;
+  border-radius: 18px;
+  padding: 38px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.flashcard:hover { transform: translateY(-3px); }
+
+.flashcard.front {
+  background: linear-gradient(135deg,
+    rgba(0,212,255,0.10) 0%,
+    rgba(0,150,200,0.05) 100%);
+  border: 1px solid rgba(0,212,255,0.25);
+  box-shadow: 0 6px 36px rgba(0,212,255,0.1),
+              inset 0 1px 0 rgba(0,212,255,0.12);
+}
+
+.flashcard.back {
+  background: linear-gradient(135deg,
+    rgba(168,85,247,0.12) 0%,
+    rgba(244,114,182,0.06) 100%);
+  border: 1px solid rgba(168,85,247,0.28);
+  box-shadow: 0 6px 36px rgba(168,85,247,0.12),
+              inset 0 1px 0 rgba(168,85,247,0.15);
+}
+
+.flashcard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+}
+.flashcard.front::before {
+  background: linear-gradient(90deg, transparent, rgba(0,212,255,0.5), transparent);
+}
+.flashcard.back::before {
+  background: linear-gradient(90deg, transparent, rgba(168,85,247,0.6), transparent);
+}
+
+.card-label {
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.flashcard.front .card-label { color: var(--cyan); }
+.flashcard.back  .card-label { color: var(--purple); }
+
+.card-content {
+  font-size: 1.18rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.65;
+  max-width: 720px;
+}
+
+.card-hint {
+  margin-top: 22px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-style: italic;
+}
+
+.card-grid-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  transition: all 0.18s;
+}
+.card-grid-item:hover {
+  border-color: rgba(0,212,255,0.22);
+  background: rgba(0,212,255,0.05);
+}
+.card-grid-active {
+  border-color: rgba(0,212,255,0.45) !important;
+  background: rgba(0,212,255,0.09) !important;
+  box-shadow: 0 0 14px rgba(0,212,255,0.12);
+}
+.card-grid-num {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 5px;
+}
+.card-grid-q {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* ================================================================
+   SCROLLBAR
+   ================================================================ */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(0,212,255,0.22);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(0,212,255,0.42); }
+
+/* ================================================================
+   MISC
+   ================================================================ */
+hr {
+  border: none !important;
+  border-top: 1px solid rgba(255,255,255,0.07) !important;
+  margin: 1.5rem 0 !important;
+}
+
+[data-testid="stHorizontalBlock"] { gap: 12px !important; }
+
+/* Chat box scroll fix */
+[data-testid="stVerticalBlock"] > div:has(.chat-message) { overflow-y: auto; }
+
+/* Metric cards */
+[data-testid="stMetric"] {
+  background: rgba(255,255,255,0.04) !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  border: 1px solid var(--border-soft) !important;
+}
